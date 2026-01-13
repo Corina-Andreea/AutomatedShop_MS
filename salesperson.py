@@ -44,71 +44,70 @@ If action == "handoff", output ONLY:
 }
 """
 
+
 class SalespersonAgent:
+    def __init__(self):
+        self.supplier = SupplierAgent()
 
-    class SalespersonAgent:
-        def __init__(self):
-            self.supplier = SupplierAgent()
+    def has_enough_info(self, state: dict):
+        return (
+                state.get("product", "") != ""
+                and state.get("customer_need", "") != ""
+        )
 
-        def has_enough_info(self, state: dict):
-            return (
-                    state.get("product", "") != ""
-                    and state.get("customer_need", "") != ""
+    def extract_product_category(self, user_input: str):
+        keywords = {
+            "gaming mouse": ["mouse"],
+            "keyboard": ["keyboard"],
+            "monitor": ["monitor"],
+            "headphones": ["headphones"],
+            "smart tv": ["tv", "television"]
+        }
+
+        text = user_input.lower()
+        for product, keys in keywords.items():
+            if any(k in text for k in keys):
+                return product
+
+        return ""
+    def run(self, user_input: str, state: dict):
+        # 1️⃣ Deterministically extract product category
+        if not state.get("product"):
+            detected = self.extract_product_category(user_input)
+            if detected:
+                state["product"] = detected
+
+        # 2️⃣ Call LLM to interpret preferences
+        raw = call_llm(SYSTEM_PROMPT, user_input, state)
+        response = json.loads(raw)
+
+        # 3️⃣ Apply LLM state updates (preferences, phase hints)
+        for k, v in response.get("state_updates", {}).items():
+            state[k] = v
+
+        # 4️⃣ 🔴 HARD STOP: trigger supplier as soon as info is sufficient
+        if state["phase"] == "discovery" and self.has_enough_info(state):
+            state["phase"] = "supplier_lookup"
+
+            product_query = f"{state['product']} {state['customer_need']}"
+            supplier_data = self.supplier.fetch_product_info(product_query)
+
+            state["supplier_data"] = supplier_data
+            state["base_price"] = supplier_data.get("price", 0)
+            state["phase"] = "recommendation"
+
+            followup = call_llm(
+                SYSTEM_PROMPT,
+                "Present ONE concrete product recommendation using supplier data and ask for purchase confirmation.",
+                state
             )
 
-        def extract_product_category(self, user_input: str):
-            keywords = {
-                "gaming mouse": ["mouse"],
-                "keyboard": ["keyboard"],
-                "monitor": ["monitor"],
-                "headphones": ["headphones"],
-                "smart tv": ["tv", "television"]
-            }
+            followup_json = json.loads(followup)
+            return followup_json["message"]
 
-            text = user_input.lower()
-            for product, keys in keywords.items():
-                if any(k in text for k in keys):
-                    return product
+        # 5️⃣ Handoff
+        if response.get("action") == "handoff":
+            state["phase"] = "contracting"
+            return {"handoff": "contracting"}
 
-            return ""
-        def run(self, user_input: str, state: dict):
-            # 1️⃣ Deterministically extract product category
-            if not state.get("product"):
-                detected = self.extract_product_category(user_input)
-                if detected:
-                    state["product"] = detected
-
-            # 2️⃣ Call LLM to interpret preferences
-            raw = call_llm(SYSTEM_PROMPT, user_input, state)
-            response = json.loads(raw)
-
-            # 3️⃣ Apply LLM state updates (preferences, phase hints)
-            for k, v in response.get("state_updates", {}).items():
-                state[k] = v
-
-            # 4️⃣ 🔴 HARD STOP: trigger supplier as soon as info is sufficient
-            if state["phase"] == "discovery" and self.has_enough_info(state):
-                state["phase"] = "supplier_lookup"
-
-                product_query = f"{state['product']} {state['customer_need']}"
-                supplier_data = self.supplier.fetch_product_info(product_query)
-
-                state["supplier_data"] = supplier_data
-                state["base_price"] = supplier_data.get("price", 0)
-                state["phase"] = "recommendation"
-
-                followup = call_llm(
-                    SYSTEM_PROMPT,
-                    "Present ONE concrete product recommendation using supplier data and ask for purchase confirmation.",
-                    state
-                )
-
-                followup_json = json.loads(followup)
-                return followup_json["message"]
-
-            # 5️⃣ Handoff
-            if response.get("action") == "handoff":
-                state["phase"] = "contracting"
-                return {"handoff": "contracting"}
-
-            return response["message"]
+        return response["message"]

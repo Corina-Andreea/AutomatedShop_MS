@@ -57,7 +57,7 @@ class SupplierAgent:
         }
 
         search = serpapi.search(params)
-        results = search.get_dict()
+        results = search.as_dict()
 
         links = []
         for r in results.get("organic_results", []):
