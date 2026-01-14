@@ -1,0 +1,194 @@
+{
+  "iPhone 17 detalii despre iPhone 17": {
+    "source_url": "https://www.apple.com/iphone-17/",
+    "price": 700.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "65"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768331897.0716243
+  },
+  "iPhone 17 iPhone 17 256 GB": {
+    "source_url": "https://www.apple.com/iphone-17/",
+    "price": 700.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "65"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768332436.4307852
+  },
+  "iPhone 17 iPhone 17": {
+    "source_url": "https://www.apple.com/iphone-17/",
+    "price": 700.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "65"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768332948.2730172
+  },
+  "televizor 120 cm diagonală televizor": {
+    "source_url": "https://www.walmart.ca/en/c/kp/120-inch-tv",
+    "price": 0,
+    "specs": [],
+    "availability": "Unknown",
+    "timestamp": 1768334178.45581
+  },
+  "smart tv televizor": {
+    "source_url": "https://www.lg.com/us/tvs",
+    "price": 200.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "OLED",
+      "65",
+      "Smart TV"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768334661.6543038
+  },
+  "phone phone inquiry": {
+    "source_url": "https://www.juheapi.com/api-catalog/phone-spec",
+    "price": 0,
+    "specs": [],
+    "availability": "Unknown",
+    "timestamp": 1768335080.0124784
+  },
+  "smart tv buy a TV": {
+    "source_url": "https://www.lg.com/us/tvs",
+    "price": 200.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "OLED",
+      "65",
+      "Smart TV"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768335670.3213108
+  },
+  "smart tv tv": {
+    "source_url": "https://www.lg.com/us/tvs",
+    "price": 200.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "OLED",
+      "65",
+      "Smart TV"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768335906.5807498
+  },
+  "smart tv smart tv": {
+    "source_url": "https://www.samsclub.com/browse/tvs-lcd-tv-led-tv-and-plasma-tv-screens/1088",
+    "price": 0,
+    "specs": [],
+    "availability": "Unknown",
+    "timestamp": 1768336096.3499713
+  },
+  "iPhone 17": {
+    "source_url": "https://www.apple.com/iphone-17/",
+    "price": 700.0,
+    "specs": [
+      "4K",
+      "HDR",
+      "65"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768418218.969796
+  },
+  "iPhone 13 Pro, 256GB, Blue": {
+    "source_url": "https://support.apple.com/en-ca/111871",
+    "price": 0,
+    "specs": [
+      "128gb",
+      "256gb",
+      "512gb",
+      "1tb",
+      "usb-c",
+      "prores",
+      "5g",
+      "oled"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768420184.0384305
+  },
+  "iPhone 13 Pro, 256GB, Blue price and availability": {
+    "source_url": "https://www.amazon.com/Apple-iPhone-13-Pro-Sierra/dp/B09LPN7C8Z",
+    "price": 0,
+    "specs": [],
+    "availability": "Unknown",
+    "timestamp": 1768420222.4639106
+  },
+  "Vortex 120 cm Smart TV": {
+    "source_url": "https://www.amazon.de/-/en/VORTEX-V39CN06-99-06-High-Definition/dp/B076BSBKMB",
+    "price": 0,
+    "specs": [],
+    "availability": "Unknown",
+    "timestamp": 1768420301.1779294
+  },
+  "120 cm Smart TV": {
+    "source_url": "https://www.lg.com/eastafrica/tvs/lg-100qned86a6",
+    "price": 0,
+    "specs": [
+      "oled"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768420351.729541
+  },
+  "iphone 13 pro, blue, 256gb": {
+    "source_url": "https://www.emag.ro/search/iphone+13+pro+256gb",
+    "price": 150.0,
+    "currency": "RON",
+    "price_ron": 150.0,
+    "specs": [
+      "iphone",
+      "samsung galaxy",
+      "256gb",
+      "128gb",
+      "5g"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768420960.146734
+  },
+  "lg smart tv, 180 cm or larger": {
+    "source_url": "https://www.emag.ro/search/televizor+180+cm",
+    "price": 99.0,
+    "currency": "RON",
+    "price_ron": 99.0,
+    "specs": [
+      "4k",
+      "8k",
+      "oled",
+      "qled",
+      "qned",
+      "led",
+      "smart tv",
+      "android tv",
+      "google tv",
+      "hdmi",
+      "5g"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768421395.4504523
+  },
+  "wireless keyboard for office use": {
+    "source_url": "https://www.emag.ro/search/wireless+keyboard",
+    "price": 99.0,
+    "currency": "RON",
+    "price_ron": 99.0,
+    "specs": [
+      "led",
+      "smart tv",
+      "usb-c"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768422139.8032112
+  }
+}
