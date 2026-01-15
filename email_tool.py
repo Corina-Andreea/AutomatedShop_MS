@@ -16,12 +16,20 @@ def send_email(order: dict, pdf_path: str):
       EMAIL_FROM (optional, default SMTP_USER)
     """
 
-    smtp_host = os.getenv("SMTP_HOST")
-    smtp_port = int(os.getenv("SMTP_PORT", "587"))
-    smtp_user = os.getenv("SMTP_USER")
-    smtp_pass = os.getenv("SMTP_PASS")
-    email_to = os.getenv("EMAIL_TO")
-    email_from = os.getenv("EMAIL_FROM", smtp_user)
+
+    SMTP_HOST ="smtp.gmail.com"
+    SMTP_PORT ="587"
+    SMTP_USER ="andreeacorina.hera@ulbsibiu.ro"
+    SMTP_PASS ="TBDpassword"
+    EMAIL_TO ="corybarby88@yahoo.it"
+    EMAIL_FROM ="andreeacorina.hera@ulbsibiu.ro"
+
+    smtp_host = SMTP_HOST
+    smtp_port = SMTP_PORT
+    smtp_user = SMTP_USER
+    smtp_pass = SMTP_PASS
+    email_to = EMAIL_TO
+    email_from = EMAIL_FROM
 
     if not all([smtp_host, smtp_user, smtp_pass, email_to, email_from]):
         raise RuntimeError(
