@@ -17,9 +17,7 @@ client = AzureOpenAI(
     api_key=subscription_key,
 )
 
-# --------------------
-# VARIANTA 2: message-based LLM call
-# --------------------
+
 def call_llm(messages: list):
     """
     messages = [

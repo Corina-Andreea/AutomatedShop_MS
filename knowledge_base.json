@@ -190,5 +190,70 @@
     ],
     "availability": "In stock",
     "timestamp": 1768422139.8032112
+  },
+  "wireless mouse": {
+    "source_url": "https://www.emag.ro/mouse/filter/interfata-mouse-f27,wireless-v18468/c",
+    "price": 99.0,
+    "currency": "RON",
+    "price_ron": 99.0,
+    "specs": [
+      "4k",
+      "led",
+      "5g",
+      "usb-c"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768480984.719602
+  },
+  "gaming mouse": {
+    "source_url": "https://www.cel.ro/mouse-gaming/?srsltid=AfmBOoq-9gy2YrKbRn3Oo-898EF75LSRzaYE7L8e7J6KgS46I3rq0LZO",
+    "price": 679.0,
+    "currency": "RON",
+    "price_ron": 679.0,
+    "specs": [
+      "8k",
+      "led",
+      "iphone"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768487973.696815
+  },
+  "asus gaming laptop": {
+    "source_url": "https://www.cel.ro/laptop-laptopuri/asus/1a-1?srsltid=AfmBOopBXjdlrHF2GcQXTixaniXiYzEHG4brDi2vj9Ng0p-vnXNHAI1a",
+    "price": 599.0,
+    "currency": "RON",
+    "price_ron": 599.0,
+    "specs": [
+      "uhd",
+      "oled",
+      "led",
+      "120hz",
+      "iphone",
+      "256gb",
+      "512gb",
+      "a16",
+      "a17",
+      "snapdragon"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768493126.5272563
+  },
+  "red dress": {
+    "source_url": "https://www.emag.ro/apa-de-parfum-adopt-red-dress-30ml-3701429820985/pd/D1RG3C3BM/",
+    "price": 49.9,
+    "currency": "RON",
+    "price_ron": 49.9,
+    "specs": [],
+    "availability": "In stock",
+    "timestamp": 1768494591.373373
+  },
+  "red dress alternative options": {
+    "source_url": "https://www.emag.ro/hanorac-femei-taylor-swift-red-dress-actress-american-negru-marime-s-hfn-in1722-s/pd/D67ZPWMBM/",
+    "price": 111.32,
+    "currency": "RON",
+    "price_ron": 111.32,
+    "specs": [],
+    "availability": "In stock",
+    "timestamp": 1768494611.8991458
   }
 }
