@@ -255,5 +255,296 @@
     "specs": [],
     "availability": "In stock",
     "timestamp": 1768494611.8991458
+  },
+  "lg tv, 200 cm screen size, smart features": {
+    "source_url": "https://www.evomag.ro/tv-multimedia-televizoare/lg-televizor-oled-lg-210-cm-83-oled83c51la-ultra-hd-4k-smart-tv-wifi-ci-4236363.html",
+    "price": 49999.0,
+    "currency": "RON",
+    "price_ron": 49999.0,
+    "specs": [
+      "4k",
+      "uhd",
+      "hdr",
+      "oled",
+      "led",
+      "smart tv",
+      "webos",
+      "hdmi",
+      "iphone",
+      "samsung galaxy",
+      "256gb",
+      "128gb"
+    ],
+    "availability": "Out of stock",
+    "timestamp": 1768498739.562717
+  },
+  "lg tv, 200 cm screen size, smart tv": {
+    "source_url": "https://www.evomag.ro/tv-multimedia/",
+    "price": 49999.0,
+    "currency": "RON",
+    "price_ron": 49999.0,
+    "specs": [
+      "4k",
+      "uhd",
+      "hdr",
+      "oled",
+      "led",
+      "smart tv",
+      "hdmi",
+      "iphone",
+      "samsung galaxy",
+      "256gb",
+      "128gb",
+      "512gb"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768498810.1156402
+  },
+  "dell laptops and wireless mice": {
+    "source_url": "https://www.cel.ro/cauta/dell+wireless+mouse+and+keyboard/?srsltid=AfmBOoohGxtinGM50flJ68iYgOd2rUcSKAqP5IApV3gUczhYxRU05-wf",
+    "price": 53.0,
+    "currency": "RON",
+    "price_ron": 53.0,
+    "specs": [
+      "4k",
+      "uhd",
+      "oled",
+      "led",
+      "iphone",
+      "snapdragon",
+      "usb-c"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768499585.4310615
+  },
+  "dell laptop": {
+    "source_url": "https://www.evomag.ro/portabile-laptopuri-notebook/dell/",
+    "price": 49999.0,
+    "currency": "RON",
+    "price_ron": 49999.0,
+    "specs": [
+      "4k",
+      "uhd",
+      "hdr",
+      "oled",
+      "led",
+      "smart tv",
+      "120hz",
+      "hdmi",
+      "iphone",
+      "samsung galaxy",
+      "256gb",
+      "128gb"
+    ],
+    "availability": "In stock",
+    "timestamp": 1768499620.083602
+  },
+  "casual red midi dress": {
+    "source_url": "https://www.amazon.es/-/en/cotton-dress-casual-summer-female/dp/B0F294VK33",
+    "price": 643.0,
+    "currency": "EUR",
+    "price_ron": 3215.0,
+    "specs": [
+      "5g"
+    ],
+    "availability": "Out of stock",
+    "timestamp": 1768500327.216608
+  },
+  "asus laptop 16gb ram": {
+    "source_url": "https://www.cel.ro/laptop-laptopuri/asus/1a-1?srsltid=AfmBOoopOpq386q1ci9PKnK8MkOrwsbTEuxOTn8YYo9A_4VEwfsi0v58",
+    "price": 599.0,
+    "currency": "RON",
+    "price_ron": 599.0,
+    "specs": [
+      "uhd",
+      "oled",
+      "led",
+      "120hz",
+      "iphone",
+      "256gb",
+      "512gb",
+      "a16",
+      "a17",
+      "snapdragon"
+    ],
+    "availability": "Unknown",
+    "timestamp": 1768500990.7977996
+  },
+  "asus laptop, 16gb ram, intel processor": {
+    "items": [],
+    "best": {
+      "source_url": "",
+      "price": 0,
+      "currency": "",
+      "price_ron": 0,
+      "availability": "Unknown",
+      "specs": [],
+      "price_quality": 0
+    },
+    "timestamp": 1768501459.5564106
+  },
+  "asus laptop, 16gb ram": {
+    "items": [],
+    "best": {
+      "source_url": "",
+      "price": 0,
+      "currency": "",
+      "price_ron": 0,
+      "availability": "Unknown",
+      "specs": [],
+      "price_quality": 0
+    },
+    "timestamp": 1768502035.4416249
+  },
+  "asus laptop with 8gb, 16gb, or 32gb ram; any processor": {
+    "items": [],
+    "best": {
+      "source_url": "",
+      "price": 0,
+      "currency": "",
+      "price_ron": 0,
+      "availability": "Unknown",
+      "specs": [],
+      "price_quality": 0
+    },
+    "timestamp": 1768502125.400611
+  },
+  "asus laptop, relaxed specs, price around 3000": {
+    "items": [],
+    "best": {
+      "source_url": "",
+      "price": 0,
+      "currency": "",
+      "price_ron": 0,
+      "availability": "Unknown",
+      "specs": [],
+      "price_quality": 0
+    },
+    "timestamp": 1768502198.0653582
+  },
+  "asus laptop, 16gb ram, suitable for work": {
+    "source_url": "",
+    "price": 0,
+    "currency": "",
+    "price_ron": 0,
+    "availability": "Unknown",
+    "specs": [],
+    "timestamp": 1768502745.6545498,
+    "error": "No usable product page found"
+  },
+  "samsung s24 256gb": {
+    "source_url": "https://m.cel.ro/telefoane-mobile/telefon-mobil-apple-iphone-11-256gb-black-pMyE0MzUqMA-l/",
+    "price": 5334.0,
+    "currency": "RON",
+    "price_ron": 5334.0,
+    "availability": "In stock",
+    "specs": [
+      "256gb",
+      "usb-c"
+    ],
+    "timestamp": 1768503226.5236783
+  },
+  "toaster, max 200 lei": {
+    "source_url": "https://www.cel.ro/sandwich-maker-5-in-1-cu-functie-grill-2-tipuri-sandwich-vafe-si-preparare-nuci-protectie-supraincalzire-pNyMxMjErMw-l/?srsltid=AfmBOopGf_wHM8TtJY-Rao3pNApH2HtReyoKkl0jiscvhhoF8KRcVs_j",
+    "price": 185.0,
+    "currency": "RON",
+    "price_ron": 185.0,
+    "availability": "In stock",
+    "specs": [],
+    "timestamp": 1768503637.014848
+  },
+  "mouse wireless, preț maxim 100 lei": {
+    "source_url": "",
+    "price": 0,
+    "currency": "",
+    "price_ron": 0,
+    "availability": "Unknown",
+    "specs": [],
+    "timestamp": 1768503847.1849937,
+    "error": "No usable page found"
+  },
+  "căști wireless apple": {
+    "source_url": "https://www.evomag.ro/telefoane-tablete-accesorii-accesorii-telefoane-casti-bluetooth-wireless-airpods-si-audio/apple-casti-wireless-apple-airpods-max-2024-bluetooth-5-autonomie-20-ore-izolare-zgomot-exterior-eq-portocaliu-4181273.html",
+    "price": 499.99,
+    "currency": "RON",
+    "price_ron": 499.99,
+    "availability": "In stock",
+    "specs": [
+      "5g",
+      "128gb",
+      "256gb",
+      "512gb",
+      "usb-c",
+      "oled"
+    ],
+    "timestamp": 1768504991.3658266
+  },
+  "uscător de păr philips, preț maxim 200 lei": {
+    "source_url": "",
+    "price": 0,
+    "currency": "",
+    "price_ron": 0,
+    "availability": "Unknown",
+    "specs": [],
+    "timestamp": 1768505169.4239745,
+    "error": "No usable product page found (blocked/timeouts)."
+  },
+  "epilator utilizare umedă": {
+    "source_url": "",
+    "price": 0,
+    "currency": "",
+    "price_ron": 0,
+    "availability": "Unknown",
+    "specs": [],
+    "timestamp": 1768505297.7809696,
+    "error": "No usable product page found (blocked/timeouts)."
+  },
+  "samsung s24": {
+    "source_url": "https://www.cel.ro/cauta/samsung+galaxy+s24+5g+256gb/?srsltid=AfmBOoozEcaQKZS_08onRYgn5SW612WK90ttzOCjM351Rto5NK71QUJi",
+    "price": 1789.0,
+    "currency": "RON",
+    "price_ron": 1789.0,
+    "availability": "Unknown",
+    "specs": [
+      "5g",
+      "128gb",
+      "256gb",
+      "512gb",
+      "usb-c",
+      "oled"
+    ],
+    "timestamp": 1768505426.2151778
+  },
+  "televizor samsung full hd": {
+    "source_url": "https://www.evomag.ro/tv-multimedia-televizoare/samsung-televizor-led-40-ue40c6500-full-hd-54391.html",
+    "price": 499.99,
+    "currency": "RON",
+    "price_ron": 499.99,
+    "availability": "Out of stock",
+    "specs": [
+      "5g",
+      "128gb",
+      "256gb",
+      "512gb",
+      "usb-c",
+      "oled"
+    ],
+    "timestamp": 1768505762.1706035
+  },
+  "samsung smart tv": {
+    "source_url": "https://www.cel.ro/cauta/samsung+smart+tv+billenty+zet/?srsltid=AfmBOoql-I0nKbFqT6h9FBRqxJURFi0uguwLTJTc17hEhM9Kwm1c5N5T",
+    "price": 19.0,
+    "currency": "RON",
+    "price_ron": 19.0,
+    "availability": "Unknown",
+    "specs": [
+      "4k",
+      "uhd",
+      "hdr",
+      "oled",
+      "qled",
+      "smart tv"
+    ],
+    "timestamp": 1768506016.2296827
   }
 }

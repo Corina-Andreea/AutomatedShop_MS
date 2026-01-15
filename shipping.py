@@ -15,15 +15,12 @@ YOU MUST:
 2. Ask customer for preference
 3. If customer requests ≤3 days:
    - Counter with 4 days OR
-   - Offer 2-day shipping with extra fee
+   - Offer 2-day expedited shipping with extra fee
 4. Negotiate for MAX 2 turns
 5. Lock the final shipping date
-6. Update ORDER_STATE
 
 AFTER LOCK:
-- Generate PDF invoice
-- Send confirmation email (with PDF attached)
-- Clearly state order is finalized
+- Output JSON finalize signal
 
 OUTPUT STRICT JSON:
 
@@ -40,17 +37,19 @@ If action == "finalize", output ONLY:
 
 
 class ShippingAgent:
+    # -----------------------------
+    # JSON parsing helpers
+    # -----------------------------
     def _clean_json_text(self, text: str) -> str:
-        """Removes markdown ```json blocks if present."""
         cleaned = (text or "").strip()
 
+        # remove markdown code fences
         if cleaned.startswith("```"):
             cleaned = cleaned.replace("```json", "")
             cleaned = cleaned.replace("```", "")
             cleaned = cleaned.strip()
 
-        # sometimes model adds leading/trailing text
-        # attempt to cut only JSON object
+        # cut only json object if extra text exists
         first = cleaned.find("{")
         last = cleaned.rfind("}")
         if first != -1 and last != -1 and last > first:
@@ -59,7 +58,6 @@ class ShippingAgent:
         return cleaned
 
     def safe_json_loads(self, text: str) -> dict:
-        """Parse JSON safely. Fallback to continue."""
         try:
             cleaned = self._clean_json_text(text)
             return json.loads(cleaned)
@@ -68,9 +66,12 @@ class ShippingAgent:
                 "message": (text or "").strip(),
                 "shipping_days": 0,
                 "expedited_fee": 0,
-                "action": "continue",
+                "action": "continue"
             }
 
+    # -----------------------------
+    # LLM messages
+    # -----------------------------
     def build_messages(self, conversation: list, state: dict) -> list:
         messages = [{"role": "system", "content": SYSTEM_PROMPT}]
         if conversation:
@@ -80,54 +81,82 @@ class ShippingAgent:
             "role": "user",
             "content": "STATE:\n" + json.dumps(state, indent=2)
         })
-
         return messages
 
+    # -----------------------------
+    # Pricing
+    # -----------------------------
+    def compute_final_total(self, state: dict) -> float:
+        total_price = float(state.get("total_price", 0) or 0)   # base + upsells
+        expedited_fee = float(state.get("expedited_fee", 0) or 0)
+        return total_price + expedited_fee
+
+    # -----------------------------
+    # Main
+    # -----------------------------
     def run(self, user_input: str, state: dict, conversation: list):
         """
-        ✅ Signature matches main.py:
-           run(user_input, state, conversation)
+        ✅ Signature matches main.py: run(user_input, state, conversation)
         """
 
-        # ensure defaults
+        # defaults
         state.setdefault("shipping_final_days", 0)
         state.setdefault("expedited_fee", 0)
+        state.setdefault("final_total_price", 0)
         state.setdefault("finalized", False)
 
-        # If already finalized, stop duplicating
+        # If already finalized, do not repeat
         if state.get("finalized") is True:
-            return "✅ Order already finalized. You will receive email + invoice."
+            return "✅ Order already finalized. You should receive confirmation email + invoice."
 
         # LLM call
-        messages = self.build_messages(conversation, state)
-        raw = call_llm(messages)
-
+        raw = call_llm(self.build_messages(conversation, state))
         response = self.safe_json_loads(raw)
 
-        # DEBUG (optional, keep while testing)
+        # DEBUG (keep for testing)
         print("[DEBUG SHIPPING] RAW:", raw)
         print("[DEBUG SHIPPING] PARSED:", response)
 
-        # Update state
+        # Update shipping info
         if "shipping_days" in response and response["shipping_days"]:
             state["shipping_final_days"] = response["shipping_days"]
 
         if "expedited_fee" in response:
             state["expedited_fee"] = response["expedited_fee"]
 
-        # ✅ FINALIZE condition (this is the important block)
+        # Always compute final total continuously
+        state["final_total_price"] = self.compute_final_total(state)
+
+        # ✅ Finalize condition
         if response.get("finalized") is True or response.get("action") == "finalize":
             print("[DEBUG SHIPPING] Finalize condition met. Generating PDF + sending email...")
 
-            # mark finalized (prevents sending twice)
             state["finalized"] = True
+            state["final_total_price"] = self.compute_final_total(state)
 
-            # ✅ generate pdf first
+            # Ensure invoice_id exists (avoid invoice_.pdf)
+            if not state.get("invoice_id"):
+                state["invoice_id"] = "INV001"
+
+            # Generate PDF
             pdf_path = generate_invoice_pdf(state)
 
-            # ✅ send email with attachment
-            send_email(state, pdf_path)
+            # Try sending email (but do NOT crash if SMTP missing)
+            try:
+                send_email(state, pdf_path)
+            except Exception as e:
+                print("[EMAIL ERROR]", e)
 
-            return "✅ Order finalized. Confirmation email sent and PDF invoice generated."
+            return (
+                "✅ Order finalized.\n"
+                f"- Shipping: {state.get('shipping_final_days')} days\n"
+                f"- Expedited fee: {state.get('expedited_fee')} RON\n"
+                f"- Final total: {state.get('final_total_price')} RON\n"
+                "📄 Invoice PDF generated (and email attempted)."
+            )
 
-        return response.get("message", "Standard delivery is 5–7 days. Do you have a preference?")
+        # Continue negotiation
+        return response.get(
+            "message",
+            "Standard delivery is 5–7 days. Do you have a preference?"
+        )

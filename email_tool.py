@@ -16,13 +16,12 @@ def send_email(order: dict, pdf_path: str):
       EMAIL_FROM (optional, default SMTP_USER)
     """
 
-
-    SMTP_HOST ="smtp.gmail.com"
-    SMTP_PORT ="587"
-    SMTP_USER ="andreeacorina.hera@ulbsibiu.ro"
-    SMTP_PASS ="TBDpassword"
-    EMAIL_TO ="corybarby88@yahoo.it"
-    EMAIL_FROM ="andreeacorina.hera@ulbsibiu.ro"
+    SMTP_HOST = "smtp.gmail.com"
+    SMTP_PORT = "587"
+    SMTP_USER = "simonaistrate1234@gmail.com"
+    SMTP_PASS = "klnr vlhy pzbo fasl"
+    EMAIL_TO = "simonamariana.istrate@ulbsibiu.ro"
+    EMAIL_FROM = "simonaistrate1234@gmail.com"
 
     smtp_host = SMTP_HOST
     smtp_port = SMTP_PORT
@@ -39,8 +38,13 @@ def send_email(order: dict, pdf_path: str):
 
     invoice_id = order.get("invoice_id", "UNKNOWN")
     product = order.get("product", "Unknown product")
-    total_price = order.get("total_price", 0)
+
+    base_price = order.get("base_price", 0)
+    expedited_fee = order.get("expedited_fee", 0)
     shipping_days = order.get("shipping_final_days", 0)
+
+    # ✅ IMPORTANT: use final_total_price (includes expedited fee), fallback to total_price
+    total_price = order.get("final_total_price", order.get("total_price", 0))
 
     msg = EmailMessage()
     msg["Subject"] = f"Order Confirmation - Invoice {invoice_id}"
@@ -52,8 +56,10 @@ def send_email(order: dict, pdf_path: str):
         f"Your order has been finalized.\n\n"
         f"Invoice ID: {invoice_id}\n"
         f"Product: {product}\n"
+        f"Base Price: {base_price} RON\n"
         f"Shipping: {shipping_days} days\n"
-        f"Total: {total_price} RON\n\n"
+        f"Expedited fee: {expedited_fee} RON\n"
+        f"FINAL TOTAL: {total_price} RON\n\n"
         f"Invoice PDF is attached.\n\n"
         f"Thank you!"
     )
@@ -69,7 +75,7 @@ def send_email(order: dict, pdf_path: str):
         filename=os.path.basename(pdf_path),
     )
 
-    with smtplib.SMTP(smtp_host, smtp_port) as server:
+    with smtplib.SMTP(smtp_host, int(smtp_port)) as server:
         server.ehlo()
         server.starttls()
         server.login(smtp_user, smtp_pass)

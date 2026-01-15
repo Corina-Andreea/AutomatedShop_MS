@@ -43,31 +43,28 @@ If action == "handoff", output ONLY:
 class ContractingAgent:
     def safe_json_loads(self, text: str) -> dict:
         try:
-            return json.loads(text)
+            cleaned = (text or "").strip()
+            if cleaned.startswith("```"):
+                cleaned = cleaned.replace("```json", "").replace("```", "").strip()
+            first = cleaned.find("{")
+            last = cleaned.rfind("}")
+            if first != -1 and last != -1 and last > first:
+                cleaned = cleaned[first:last + 1]
+            return json.loads(cleaned)
         except Exception:
-            # fallback
             return {
-                "message": text.strip(),
+                "message": (text or "").strip(),
                 "accepted_upsells": [],
                 "total_price": 0,
                 "action": "continue"
             }
 
-    def build_messages(self, conversation: list, user_input: str, state: dict) -> list:
-        """
-        call_llm expects a messages list.
-        We include:
-         - system prompt
-         - conversation history from main.py
-         - latest user input (already in conversation usually, but ok)
-         - state snapshot
-        """
+    def build_messages(self, conversation: list, state: dict) -> list:
         messages = [{"role": "system", "content": SYSTEM_PROMPT}]
 
         if conversation:
             messages.extend(conversation)
 
-        # add state snapshot for correctness
         messages.append({
             "role": "user",
             "content": "STATE:\n" + json.dumps(state, indent=2)
@@ -75,30 +72,49 @@ class ContractingAgent:
 
         return messages
 
+    def compute_total(self, state: dict) -> float:
+        base_price = float(state.get("base_price", 0) or 0)
+        upsells = state.get("upsells", []) or []
+        upsells_total = 0.0
+
+        for u in upsells:
+            try:
+                upsells_total += float(u.get("price", 0) or 0)
+            except Exception:
+                pass
+
+        return base_price + upsells_total
+
     def run(self, user_input: str, state: dict, conversation: list):
-        """
-        ✅ IMPORTANT: signature matches main.py usage:
-           run(user_input, state, conversation)
-        """
+        # defaults
+        state.setdefault("upsells", [])
+        state.setdefault("base_price", 0)
+        state.setdefault("total_price", 0)
+
         # assign invoice id once
-        if "invoice_id" not in state:
+        if not state.get("invoice_id"):
             state["invoice_id"] = str(uuid.uuid4())[:8]
 
         # LLM call
-        messages = self.build_messages(conversation, user_input, state)
+        messages = self.build_messages(conversation, state)
         raw = call_llm(messages)
         response = self.safe_json_loads(raw)
 
         # If model decides handoff
         if response.get("handoff") == "shipping" or response.get("action") == "handoff":
+            # ✅ compute final total before handoff
+            state["total_price"] = self.compute_total(state)
             return {"handoff": "shipping"}
 
-        # Persist upsells
+        # Persist upsells (only if provided)
         for upsell in response.get("accepted_upsells", []):
-            state.setdefault("upsells", []).append(upsell)
+            # normalize data
+            name = upsell.get("name", "")
+            price = upsell.get("price", 0)
+            if name:
+                state["upsells"].append({"name": name, "price": price})
 
-        # Update pricing
-        if "total_price" in response:
-            state["total_price"] = response["total_price"]
+        # ✅ ALWAYS recompute total in code (even if no upsells)
+        state["total_price"] = self.compute_total(state)
 
         return response.get("message", "Do you accept the additional offers?")
