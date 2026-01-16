@@ -34,7 +34,7 @@ TRUSTED_DOMAINS_RO = [
     "cel.ro",
     "flanco.ro",
     "mediagalaxy.ro",
-    #"altex.ro",
+    "altex.ro",
 ]
 
 # Pass 2: fallback EU/comparators
@@ -51,7 +51,7 @@ TRUSTED_DOMAINS_FALLBACK = [
 
 class SupplierAgent:
     """
-    SupplierAgent V5:
+    SupplierAgent:
     ✅ requests.Session (stable)
     ✅ retry + backoff
     ✅ per-domain URL limiting
