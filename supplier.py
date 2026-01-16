@@ -16,7 +16,7 @@ from serpapi import GoogleSearch
 KNOWLEDGE_BASE_FILE = "knowledge_base.json"
 SERPAPI_KEY = "769f5198e747a3bab0c1885b77b2e97f51cce0415b35496e7574a9ad300740f6"
 
-DEBUG = True
+DEBUG = False
 
 SERP_NUM_RESULTS = 20
 MAX_URLS_TO_TRY = 30

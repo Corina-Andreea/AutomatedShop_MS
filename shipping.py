@@ -114,8 +114,8 @@ class ShippingAgent:
         response = self.safe_json_loads(raw)
 
         # DEBUG (keep for testing)
-        print("[DEBUG SHIPPING] RAW:", raw)
-        print("[DEBUG SHIPPING] PARSED:", response)
+        #print("[DEBUG SHIPPING] RAW:", raw)
+        #print("[DEBUG SHIPPING] PARSED:", response)
 
         # Update shipping info
         if "shipping_days" in response and response["shipping_days"]:
@@ -129,9 +129,14 @@ class ShippingAgent:
 
         # ✅ Finalize condition
         if response.get("finalized") is True or response.get("action") == "finalize":
-            print("[DEBUG SHIPPING] Finalize condition met. Generating PDF + sending email...")
+            print("Generating PDF + sending email...")
 
             state["finalized"] = True
+                    
+            # set state to complete after pdf+email
+            state["order_locked"] = True
+            state["phase"] = "complete"
+
             state["final_total_price"] = self.compute_final_total(state)
 
             # Ensure invoice_id exists (avoid invoice_.pdf)
