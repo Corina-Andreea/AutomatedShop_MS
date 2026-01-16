@@ -546,5 +546,51 @@
       "smart tv"
     ],
     "timestamp": 1768506016.2296827
+  },
+  "laptop with a price up to 6000 ron": {
+    "source_url": "https://www.amazon.de/-/en/Crucial-CT4000X10SSD9-02-External-Portable-Smartphone/dp/B0F334SXSC",
+    "price": 759.46,
+    "currency": "RON",
+    "price_ron": 759.46,
+    "availability": "Out of stock",
+    "specs": [
+      "ram",
+      "ssd",
+      "1tb"
+    ],
+    "timestamp": 1768577823.7040114
+  },
+  "asus gaming laptop under 6000 ron": {
+    "source_url": "https://www.cel.ro/laptop-asus-v16-wuxga-ips-144hz-intel-core-7-240h-16gb-ddr5-1tb-ssd-nvidia-geforce-rtx-4050-6gb-matte-black-pMCIyNjYnMyk-l/?srsltid=AfmBOorVc1maR9dT4TPLH-p8esc0gAiyHmfMDdMPsxcELZfugi0HrJha",
+    "price": 5686.0,
+    "currency": "RON",
+    "price_ron": 5686.0,
+    "availability": "In stock",
+    "specs": [
+      "16gb",
+      "ram",
+      "ddr4",
+      "ddr5",
+      "ssd",
+      "512gb",
+      "1tb",
+      "intel",
+      "core i5",
+      "core i7"
+    ],
+    "timestamp": 1768579837.7174747
+  },
+  "iphone 12 availability, specifications, and price": {
+    "source_url": "https://www.cel.ro/iphone-12-5g-64gb-purple-pMCI3MDEvMSM-l/?srsltid=AfmBOoqV29xDJNVh7hrKO4x7GHShHrJE0Luk8SvioIVO5IF6JJmMg8DL",
+    "price": 2049.0,
+    "currency": "RON",
+    "price_ron": 2049.0,
+    "availability": "In stock",
+    "specs": [
+      "5g",
+      "256gb",
+      "oled"
+    ],
+    "timestamp": 1768580415.3435776
   }
 }
