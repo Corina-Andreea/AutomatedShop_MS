@@ -23,6 +23,14 @@ def send_email(order: dict, pdf_path: str):
     EMAIL_TO = "simonamariana.istrate@ulbsibiu.ro"
     EMAIL_FROM = "simonaistrate1234@gmail.com"
 
+
+    # SMTP_HOST ="smtp.gmail.com"
+    # SMTP_PORT ="587"
+    # SMTP_USER ="andreeacorina.hera@ulbsibiu.ro"
+    # SMTP_PASS =""
+    # EMAIL_TO ="corybarby88@yahoo.it"
+    # EMAIL_FROM ="andreeacorina.hera@ulbsibiu.ro"
+
     smtp_host = SMTP_HOST
     smtp_port = SMTP_PORT
     smtp_user = SMTP_USER
@@ -32,7 +40,7 @@ def send_email(order: dict, pdf_path: str):
 
     if not all([smtp_host, smtp_user, smtp_pass, email_to, email_from]):
         raise RuntimeError(
-            "Missing SMTP settings. Set env vars: "
+            "Missing SMTP settings. Set vars: "
             "SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, EMAIL_TO (and optional EMAIL_FROM)."
         )
 
@@ -43,7 +51,7 @@ def send_email(order: dict, pdf_path: str):
     expedited_fee = order.get("expedited_fee", 0)
     shipping_days = order.get("shipping_final_days", 0)
 
-    # ✅ IMPORTANT: use final_total_price (includes expedited fee), fallback to total_price
+    # IMPORTANT: use final_total_price (includes expedited fee), fallback to total_price
     total_price = order.get("final_total_price", order.get("total_price", 0))
 
     msg = EmailMessage()
