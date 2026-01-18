@@ -95,9 +95,6 @@ class ShippingAgent:
     # Main
     # -----------------------------
     def run(self, user_input: str, state: dict, conversation: list):
-        """
-        ✅ Signature matches main.py: run(user_input, state, conversation)
-        """
 
         # defaults
         state.setdefault("shipping_final_days", 0)
@@ -127,7 +124,7 @@ class ShippingAgent:
         # Always compute final total continuously
         state["final_total_price"] = self.compute_final_total(state)
 
-        # ✅ Finalize condition
+        # Finalize condition
         if response.get("finalized") is True or response.get("action") == "finalize":
             print("Generating PDF + sending email...")
 
@@ -146,7 +143,7 @@ class ShippingAgent:
             # Generate PDF
             pdf_path = generate_invoice_pdf(state)
 
-            # Try sending email (but do NOT crash if SMTP missing)
+            # Try sending email
             try:
                 send_email(state, pdf_path)
             except Exception as e:

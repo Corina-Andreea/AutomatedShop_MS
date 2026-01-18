@@ -12,9 +12,9 @@ subscription_key = "1nreL7pZR3YABTUqPcUe8MMeP0Mr2HgmIJbjXJ8LZEx2fuB9CJP8JQQJ99BL
 api_version = "2024-12-01-preview"
 
 client = AzureOpenAI(
-    api_version=api_version,
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
+    api_version = api_version,
+    azure_endpoint = endpoint,
+    api_key = subscription_key,
 )
 
 

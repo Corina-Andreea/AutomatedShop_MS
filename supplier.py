@@ -21,8 +21,8 @@ DEBUG = False
 SERP_NUM_RESULTS = 20
 MAX_URLS_TO_TRY = 30
 
-REQUEST_TIMEOUT = 25  # ✅ bigger timeout
-MAX_RETRIES = 3       # ✅ retries per URL
+REQUEST_TIMEOUT = 25  # bigger timeout
+MAX_RETRIES = 3       # retries per URL
 
 EUR_TO_RON = 5.0
 
@@ -137,7 +137,7 @@ class SupplierAgent:
                 unique_urls.append(u)
                 seen.add(u)
 
-        # ✅ limit per domain
+        # limit per domain
         unique_urls = self._limit_per_domain(unique_urls, max_per_domain=3)
 
         # prefer product pages first
@@ -254,7 +254,7 @@ class SupplierAgent:
 
         for attempt in range(1, MAX_RETRIES + 1):
             try:
-                # ✅ random sleep to avoid rate limits
+                # random sleep to avoid rate limits
                 time.sleep(random.uniform(0.3, 0.9))
 
                 resp = self.session.get(url, headers=headers, timeout=REQUEST_TIMEOUT)

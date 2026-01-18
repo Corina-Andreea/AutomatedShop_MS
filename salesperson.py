@@ -91,7 +91,7 @@ class SalespersonAgent:
 
     def format_supplier_answer(self, state: dict) -> str:
         """
-        Supplier now returns ONE product dict:
+        Supplier returns ONE product dict:
         {
             source_url, price, price_ron, availability, specs
         }
@@ -101,7 +101,7 @@ class SalespersonAgent:
         url = data.get("source_url", "")
         availability = data.get("availability", "Unknown")
 
-        # ✅ prefer RON price if present
+        # prefer RON price if present
         price = data.get("price_ron") or data.get("price", 0)
 
         specs = data.get("specs", [])
@@ -135,9 +135,7 @@ class SalespersonAgent:
 
         return "\n".join(lines)
 
-    # -------------------------
-    # Main
-    # -------------------------
+
     def run(self, user_input: str, state: dict, conversation: list):
         self.ensure_state(state)
 
@@ -182,7 +180,7 @@ class SalespersonAgent:
 
             state["last_product_query"] = product_query
 
-            # ✅ supplier call with excluded_urls support
+            # supplier call with excluded_urls support
             supplier_data = self.supplier.fetch_product_info(
                 product_query,
                 excluded_urls=state.get("rejected_products", [])
@@ -190,7 +188,7 @@ class SalespersonAgent:
 
             state["supplier_data"] = supplier_data
 
-            # ✅ set base price properly
+            # set base price properly
             state["base_price"] = supplier_data.get("price_ron") or supplier_data.get("price", 0)
 
             state["phase"] = "recommendation"

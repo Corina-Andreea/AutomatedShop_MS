@@ -7,7 +7,7 @@ def main():
     state = OrderState()
     agent = SalespersonAgent()
 
-    conversation_history = []   # 👈 MEMORIA CONVERSAȚIEI
+    conversation_history = [] # istoric global al conversatiei
 
     print("🛒 Welcome to the Automated Shop!")
 
@@ -18,7 +18,7 @@ def main():
             print("\nSystem: Order already completed. Thank you!")
             break
 
-        # 👇 adăugăm input-ul userului în istoric
+        # adauga input-ul userului in istoric
         conversation_history.append({"role": "user", "content": user_input})
 
         state_dict = state.to_dict()
@@ -26,7 +26,7 @@ def main():
         reply = agent.run(
             user_input=user_input,
             state=state_dict,
-            conversation=conversation_history   # 👈 trimis mai departe
+            conversation=conversation_history   # trimis mai departe
         )
 
         # ---------------------------
