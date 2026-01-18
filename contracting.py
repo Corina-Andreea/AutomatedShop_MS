@@ -100,21 +100,35 @@ class ContractingAgent:
         raw = call_llm(messages)
         response = self.safe_json_loads(raw)
 
-        # If model decides handoff
-        if response.get("handoff") == "shipping" or response.get("action") == "handoff":
-            # ✅ compute final total before handoff
-            state["total_price"] = self.compute_total(state)
-            return {"handoff": "shipping"}
+        # # If model decides handoff
+        # if response.get("handoff") == "shipping" or response.get("action") == "handoff":
+        #     # compute final total before handoff
+        #     state["total_price"] = self.compute_total(state)
+        #     return {"handoff": "shipping"}
 
-        # Persist upsells (only if provided)
+        # # Persist upsells (only if provided)
+        # for upsell in response.get("accepted_upsells", []):
+        #     # normalize data
+        #     name = upsell.get("name", "")
+        #     price = upsell.get("price", 0)
+        #     if name:
+        #         state["upsells"].append({"name": name, "price": price})
+
+        # Persist upsells first
         for upsell in response.get("accepted_upsells", []):
-            # normalize data
             name = upsell.get("name", "")
             price = upsell.get("price", 0)
-            if name:
+            if name and not any(u["name"] == name for u in state["upsells"]):
                 state["upsells"].append({"name": name, "price": price})
 
-        # ✅ ALWAYS recompute total in code (even if no upsells)
+        # Recompute total
         state["total_price"] = self.compute_total(state)
+
+        # Handle handoff
+        if response.get("handoff") == "shipping" or response.get("action") == "handoff":
+            return {"handoff": "shipping"}
+
+        # # ALWAYS recompute total in code (even if no upsells)
+        # state["total_price"] = self.compute_total(state)
 
         return response.get("message", "Do you accept the additional offers?")
